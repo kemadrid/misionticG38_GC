@@ -1,0 +1,87 @@
+@page
+@using Avicola.Dominio;
+@model Avicola.FrontEnd.Pages.GalponModel;
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<nav class="navbar navbar-light bg-light">
+ 
+</nav>
+<div class="text-center">
+    <h1 class="display-4">Nuestros Galpones</h1>
+</div>
+<div class="container bg-light">
+<form class="mt-2" method="POST">
+  <input type="hidden" asp-for="galpon.Id">
+    <div class="form-group row ">
+        <label asp-for="galpon.Nombre" class="col-sm-2 col-form-label">Nombre Galpon</label>
+        <div class="col-sm-10">
+        <input type="text" class="form-control" asp-for="galpon.Nombre">
+        </div>
+        <span asp-validation-for="galpon.Nombre" class="text-danger"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="galpon.Ubicacion" class="col-sm-2 col-form-label">Ubicación</label>
+        <div class="col-sm-10">
+        <input type="text" class="form-control" asp-for="galpon.Ubicacion">
+        </div>
+        <span asp-validation-for="galpon.Ubicacion" class="text-danger"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="galpon.CantidadAnimales" class="col-sm-2 col-form-label">Cantidad de Animales</label>
+        <div class="col-sm-10">
+        <input class="form-control" asp-for="galpon.CantidadAnimales" >
+        </div>
+        <span asp-validation-for="galpon.CantidadAnimales" class="text-danger"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="galpon.FechaIngAnimales" class="col-sm-2 col-form-label">Fecha Ingreso</label>
+        <div class="col-sm-10">
+        <input class="form-control" asp-for="galpon.FechaIngAnimales" >
+        </div>
+         <span asp-validation-for="galpon.FechaIngAnimales" class="text-danger"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="galpon.FechaSalAnimales" class="col-sm-2 col-form-label">Fecha Salida</label>
+        <div class="col-sm-10">
+        <input class="form-control" asp-for="galpon.FechaSalAnimales" >
+        </div>
+        <span asp-validation-for="galpon.FechaSalAnimales" class="text-danger"></span>
+    </div>
+  <div class="form-group row">
+    <label asp-for="galpon.Latitud" class="col-sm-2 col-form-label">Latitud</label>
+    <div class="col-sm-10">
+      <input class="form-control" asp-for="galpon.Latitud" >
+    </div>
+    <span asp-validation-for="galpon.Latitud" class="text-danger"></span>
+  </div>
+  <div class="form-group row">
+    <label asp-for="galpon.Longitud" class="col-sm-2 col-form-label">Longitud</label>
+    <div class="col-sm-10">
+      <input class="form-control" asp-for="galpon.Longitud" >
+    </div>
+    <span asp-validation-for="galpon.Longitud" class="text-danger"></span>
+  </div>
+  <div class="form-group row">
+    <label asp-for="galpon.Operario" class="col-sm-2 col-form-label">Operario  designado (Id)</label>
+    <div class="col-sm-10">
+      <input class="form-control" asp-for="galpon.Operario" >
+    </div>
+    <span asp-validation-for="galpon.Operario" class="text-danger"></span>
+  </div>
+  <div class="form-group row">
+    <label asp-for="galpon.Veterinario" class="col-sm-2 col-form-label">veterinario  designado (Id)</label>
+    <div class="col-sm-10">
+      <input class="form-control" asp-for="galpon.Veterinario" >
+    </div>
+    <span asp-validation-for="galpon.Veterinario" class="text-danger"></span>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <button type="submit" class="btn btn-primary">Sign in</button>
+      <a class="btn btn-outline-success ml-1" type="button" asp-page="/ConsultaGalpon">Consultar Galpón</a>
+    </div>
+  </div>
+</form>
+</div>

@@ -1,0 +1,23 @@
+﻿@page
+@model Avicola.Frontend.Pages.BorrarUsuarioModel
+@{
+}
+
+<div align="center">
+<img width="20%" src="https://previews.123rf.com/images/onirb/onirb1308/onirb130801205/21555335-dark-red-cleared-warning-3d-graphic-with-cleared-delete-sign-not-allowed.jpg"></img>
+
+<form method="post">
+    <h3>Detalle del Usuario</h3>
+    <input type="hidden" asp-for="detallePer.Id"></input>
+    <span style="color: red;">Id:</span> @Model.detallePer.Id
+    <br />
+    <span style="color: red;">Nombre: </span>@Model.detallePer.Nombre
+    <br />
+    <span style="color: red;">Apellido: </span>@Model.detallePer.Apellido
+    <br />
+    <span style="color: red;">Identificacion: </span> @Model.detallePer.Cedula
+<br />
+<button type="submit" class="btn btn-primary">Eliminar Definitivamente</button>
+
+</form>
+</div>

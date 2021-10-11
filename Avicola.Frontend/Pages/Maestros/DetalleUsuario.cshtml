@@ -1,0 +1,25 @@
+﻿@page
+@model Avicola.Frontend.Pages.DetalleUsuarioModel
+@{
+}
+
+<div align="center">
+
+
+    <h3>Detalle del Usuario</h3>
+    <span style="color: red;">Id:</span> @Model.detallePer.Id
+    <br />
+    <span style="color: red;">Nombre: </span>@Model.detallePer.Nombre
+    <br />
+    <span style="color: red;">Apellido: </span>@Model.detallePer.Apellido
+    <br />
+    <span style="color: red;">Identificacion: </span> @Model.detallePer.Cedula
+    <br />
+    <span style="color: red;">Email:  </span>@Model.detallePer.Email
+    <br />
+    <span style="color: red;">Telefono:  </span>@Model.detallePer.Telefono
+    <br />
+    <span style="color: red;">Tipo:  </span>@Model.detallePer.tipo
+    <br />
+    <a asp-page="Usuario">Regresar</a>
+</div>

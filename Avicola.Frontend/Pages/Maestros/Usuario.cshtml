@@ -1,0 +1,57 @@
+﻿@page
+@model Avicola.Frontend.Pages.UsuarioModel
+@{
+}
+
+<div align="center">
+    <H3>Resumen de Usuarios</H3>
+    <a asp-page="NuevoUsuario" class="btn btn-primary table-btn">
+        Crear Nuevo
+    </a>
+</div>
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Identificacion</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Tipo</th>
+        <th>Detalle</th>
+        <th>Editar</th>
+        <th>Borrar</th>
+    </tr>
+    @foreach (var item in Model.personasBD
+)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Cedula</td>
+            <td>@item.Nombre</td>
+            <td>@item.Apellido</td>
+            <td>@item.tipo</td>
+            <td>
+            <a class="btn btn-primary table-btn" asp-page="DetalleUsuario" asp-route-idusuario="@item.Id">
+                <i class="fas fa-info-circle">
+                    Ver
+                </i>
+            </a>
+            </td>
+            <td>
+            <a class="btn btn-primary table-btn" asp-page="NuevoUsuario" asp-route-idusuario="@item.Id">
+                <i class="fas fa-info-circle">
+                    Editar
+                </i>
+            </a>
+            </td>
+            <td>
+            <a class="btn btn-primary table-btn" asp-page="BorrarUsuario" asp-route-idusuario="@item.Id">
+                <i class="fas fa-info-circle">
+                    Borrar
+                </i>
+            </a>
+            </td>
+        
+        </tr>
+    }
+
+</table>

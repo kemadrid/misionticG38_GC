@@ -1,0 +1,45 @@
+@page
+@model Avicola.FrontEnd.Pages.DetalleGalponModel;
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-left">
+    <h4 class="display-4">Detalle Galpón</h4>
+</div>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Ubicacion</th>
+        <th scope="col">cantidad de animales</th>
+        <th scope="col">Fecha ingreso animales</th>
+        <th scope="col">Fecha salida animales</th>
+        <th scope="col">Latitud</th>
+        <th scope="col">Longitud</th>
+        <th scope="col">Operario</th>
+        <th scope="col">Veterinario</th>
+    
+      </tr>
+    </thead> 
+  
+  
+    <tbody>
+      <tr>
+        <th scope="row">@Model.galpon.Id</th>
+        <td>@Model.galpon.Nombre</td>
+        <td>@Model.galpon.Ubicacion</td>
+        <td>@Model.galpon.CantidadAnimales</td>
+        <td>@Model.galpon.FechaIngAnimales</td>
+        <td>@Model.galpon.FechaSalAnimales</td>
+        <td>@Model.galpon.Latitud</td>
+        <td>@Model.galpon.Longitud</td>
+        <td>@Model.galpon.Operario</td>
+        <td>@Model.galpon.Veterinario</td>
+        
+      </tr>
+   
+    </tbody>  
+</table>
+<a class="btn btn-secondary" asp-page="./ConsultaGalpon">Volver</a>

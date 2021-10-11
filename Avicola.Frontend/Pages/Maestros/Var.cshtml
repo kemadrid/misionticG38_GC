@@ -1,0 +1,28 @@
+﻿@page
+@model Avicola.Frontend.Pages.VarModel
+@{
+}
+
+<div align="center">
+    <H3>Resumen de Variables</H3>
+    <a asp-page="EditVar" class="btn btn-primary table-btn">
+        Crear Nueva
+    </a>
+</div>
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Tipo</th>
+    </tr>
+    @foreach (var item in Model.variablesBD
+)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Nombre</td>
+            <td>@item.Tipo</td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,33 @@
+@page
+@model Avicola.FrontEnd.Pages.ConsultaGalponModel;
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-left">
+    <h4 class="display-4">Consulta Galpones</h4>
+</div>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Ubicacion</th>
+        <th scope="col">Acción</th>
+      </tr>
+    </thead> 
+  
+  @foreach (var galpon in Model.galpones)
+  {
+    <tbody>
+      <tr>
+        <th scope="row">@galpon.Id</th>
+        <td>@galpon.Nombre</td>
+        <td>@galpon.Ubicacion</td>
+        <td><a class="btn btn-secondary" asp-page="./Galpon" asp-route-id="@galpon.Id"><i class="fa fa-edit"></i></a>
+        <a class="btn btn-secondary" asp-page="./DetalleGalpon" asp-route-id="@galpon.Id"><i class="far fa-book"></i></a>
+        </td>
+      </tr>
+    </tbody>  
+  }
+</table>

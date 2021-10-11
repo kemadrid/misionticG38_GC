@@ -1,0 +1,30 @@
+﻿@page
+@model Avicola.Frontend.Pages.EditVarModel
+@using Avicola.Dominio;
+@{
+}
+
+
+<div align="center">
+    <H3>DILIGENCIA LA INFORMACION DE LA NUEVA VARIABLE</H3>
+    
+<form method="post">
+  <div class="form-group">
+    <label  class="form-label" >Nombre</label>
+    <input class="form-control" placeholder="Ingrese el nombre" asp-for="nuevaVar.Nombre">
+    <span class="text-danger" asp-validation-for="nuevaVar.Nombre"></span>
+  </div>
+  <div class="form-group">
+    <label  class="form-label" >Tipo</label>
+    <select asp-for="nuevaVar.Tipo" asp-items="Html.GetEnumSelectList<Enum_TipoVariable>()" class="form-control">
+    </select>
+  </div>
+  
+  
+  
+  <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
+
+
+
+</div>
