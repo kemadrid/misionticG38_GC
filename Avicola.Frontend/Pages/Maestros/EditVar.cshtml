@@ -7,17 +7,19 @@
 
 <div align="center">
     <H3>DILIGENCIA LA INFORMACION DE LA NUEVA VARIABLE</H3>
-    
-<form method="post">
-  <div class="form-group">
-    <label  class="form-label" >Nombre</label>
-    <input class="form-control" placeholder="Ingrese el nombre" asp-for="nuevaVar.Nombre">
-    <span class="text-danger" asp-validation-for="nuevaVar.Nombre"></span>
   </div>
-  <div class="form-group">
-    <label  class="form-label" >Tipo</label>
-    <select asp-for="nuevaVar.Tipo" asp-items="Html.GetEnumSelectList<Enum_TipoVariable>()" class="form-control">
+  <div class="container bg-light">
+<form method="post">
+  <div class="form-group row">
+    <label  class="col-sm-2 col-form-label">Nombre</label>
+    <div class="col-sm-10"><input class="form-control" placeholder="Ingrese el nombre" asp-for="nuevaVar.Nombre">
+    </div><span class="text-danger" asp-validation-for="nuevaVar.Nombre"></span>
+  </div>
+  <div class="form-group row">
+    <label  class="col-sm-2 col-form-label">Tipo</label>
+    <div class="col-sm-10"><select asp-for="nuevaVar.Tipo" asp-items="Html.GetEnumSelectList<Enum_TipoVariable>()" class="form-control">
     </select>
+    </div>
   </div>
   
   

@@ -13,6 +13,7 @@
         <th scope="col">#</th>
         <th scope="col">Nombre</th>
         <th scope="col">Ubicacion</th>
+        <th scope="col">Veterinario</th>
         <th scope="col">Acción</th>
       </tr>
     </thead> 
@@ -24,6 +25,7 @@
         <th scope="row">@galpon.Id</th>
         <td>@galpon.Nombre</td>
         <td>@galpon.Ubicacion</td>
+        <td>Vete ??</td>
         <td><a class="btn btn-primary" asp-page="./Galpon" asp-route-id="@galpon.Id">Editar</a>
         <a class="btn btn-primary" asp-page="./DetalleGalpon" asp-route-id="@galpon.Id">Ver</a>
         </td>
