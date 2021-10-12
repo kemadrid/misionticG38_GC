@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Avicola.Dominio;
 
+
 namespace Avicola.Persistencia
 {
     public class RepositorioGalpon : IRepositorioGalpon
@@ -35,6 +36,14 @@ namespace Avicola.Persistencia
         IEnumerable<Galpon> IRepositorioGalpon.GetAllGalpones()
        {
            return _appContext.Galpones;
+       }
+
+        IEnumerable<Galpon> IRepositorioGalpon.GetAllGalponesVeterinarios()
+       {
+           IEnumerable<Galpon> result =null;
+           //result = _appContext.Galpones.Include(x => x.Veterinario).ToList();
+           return result;
+
        }
 
        Galpon IRepositorioGalpon.GetGalpon(int idGalpon)

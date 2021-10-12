@@ -13,12 +13,20 @@ namespace Avicola.FrontEnd.Pages
 {
     public class GalponModel : PageModel
     {
+        
         private readonly IRepositorioGalpon _repoGalpon;
+        private readonly IRepositorioPersona _repoPersona;
+
+        public IEnumerable<Persona> veterinarios{get; set;}
+        [BindProperty]
+        public int veterinarioSelected{get; set;}
+        
         [BindProperty]
         public Galpon galpon {get;set;}
-        public GalponModel(IRepositorioGalpon repoGalpon)
+        public GalponModel(IRepositorioGalpon repoGalpon, IRepositorioPersona repoPersona)
         {
             _repoGalpon = repoGalpon;
+            _repoPersona = repoPersona;
         }
 
         public IActionResult OnGet(int? id)
@@ -29,6 +37,9 @@ namespace Avicola.FrontEnd.Pages
             }else{
                 galpon = new Galpon();
             }
+            //cargar la lista de veterinarios
+            veterinarios = _repoPersona.traerTodosConFiltro(tipoUsuario.VETERINARIO);
+            
             return Page(); 
              
         }
@@ -42,9 +53,21 @@ namespace Avicola.FrontEnd.Pages
                 {
                     galpon = _repoGalpon.UpdateGalpon(galpon);
                 }else{
-                    _repoGalpon.AddGalpon(galpon);
+                  galpon = _repoGalpon.AddGalpon(galpon);
                     
                 }
+
+                //validemos el veterinario seleccionado y asignarlo
+                Persona veterinario = null;
+                if(veterinarioSelected != -1){
+                    veterinario = _repoPersona.buscarPorId(veterinarioSelected);
+                    if(veterinario!=null){
+                        galpon.Veterinario = veterinario;
+                         _repoGalpon.UpdateGalpon(galpon);
+                    }
+                }
+                
+                //asignar veterinario al galpon
                 return RedirectToPage("Galpon");
                 
             } else

@@ -14,6 +14,7 @@ namespace Avicola.Persistencia
         void DeleteGalpon(int idGalpon);
 
         Galpon GetGalpon(int idGalpon);
- 
+        
+        IEnumerable<Galpon> GetAllGalponesVeterinarios();
     }
 }

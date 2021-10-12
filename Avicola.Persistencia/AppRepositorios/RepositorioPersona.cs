@@ -60,5 +60,9 @@ namespace Avicola.Persistencia
             Persona buscado = conexionBD.dbset_personas.FirstOrDefault(Persona => Persona.Id == id);
             return buscado;
         }
+
+        IEnumerable<Persona> IRepositorioPersona.traerTodosConFiltro(tipoUsuario tipo_filtro){
+            return conexionBD.dbset_personas.Where(p => p.tipo == tipo_filtro).ToList();
+        }
     }
 }

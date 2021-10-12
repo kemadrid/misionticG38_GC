@@ -5,49 +5,56 @@
 @{
 }
 
-<div align="center">
-    <H3>DILIGENCIA LA INFORMACION DEL NUEVO USUARIO</H3>
-    
-<form method="post">
+<div align="center ">
+  <H3>DILIGENCIA LA INFORMACION DEL NUEVO USUARIO</H3>
+</div>
+<div class="container bg-light">
 
-  <div class="form-group">
-    <input class="form-control" placeholder="" asp-for="nuevaPer.Id" type="hidden">
-  </div> 
-  <div class="form-group">
-    <label  class="form-label" >Identificacion</label>
-    <input class="form-control" placeholder="Ingrese la identificacion" asp-for="nuevaPer.Cedula">
-    <span class="text-danger" asp-validation-for="nuevaPer.Cedula"></span>
-  </div>
-  <div class="form-group">
-    <label  class="form-label" >Nombre</label>
-    <input class="form-control" placeholder="Ingrese el nombre" asp-for="nuevaPer.Nombre">
-    <span class="text-danger" asp-validation-for="nuevaPer.Nombre"></span>
-  </div>
-  <div class="form-group">
-    <label  class="form-label" >Apellido</label>
-    <input class="form-control" placeholder="Ingrese el apellido" asp-for="nuevaPer.Apellido">
-    <span class="text-danger" asp-validation-for="nuevaPer.Apellido"></span>
-  </div>
-  <div class="form-group">
-    <label  class="form-label" >Email</label>
-    <input class="form-control" placeholder="Ingrese el email" asp-for="nuevaPer.Email">
-    <span class="text-danger" asp-validation-for="nuevaPer.Email"></span>
-  </div>
-  <div class="form-group">
-    <label  class="form-label" >Telefono</label>
-    <input class="form-control" placeholder="Ingrese el telefono" asp-for="nuevaPer.Telefono">
-    <span class="text-danger" asp-validation-for="nuevaPer.Telefono"></span>
-  </div>
-  <div class="form-group">
-    <label  class="form-label" >Tipo Usuario</label>
-    
-    <select asp-for="nuevaPer.tipo" asp-items="Html.GetEnumSelectList<tipoUsuario>()" class="form-control">
-    </select>
-  </div>
-  
-  
-  <button type="submit" class="btn btn-primary">Guardar</button>
-</form>
+  <form method="post">
+
+    <div class="form-group">
+      <input class="form-control" placeholder="" asp-for="nuevaPer.Id" type="hidden">
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Identificacion</label>
+      <div class="col-sm-10">
+        <input class="form-control" placeholder="Ingrese la identificacion" asp-for="nuevaPer.Cedula">
+      </div>
+      <span class="text-danger" asp-validation-for="nuevaPer.Cedula"></span>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Nombre</label>
+      <div class="col-sm-10"><input class="form-control" placeholder="Ingrese el nombre" asp-for="nuevaPer.Nombre">
+      </div>
+      <span class="text-danger" asp-validation-for="nuevaPer.Nombre"></span>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Apellido</label>
+      <div class="col-sm-10"><input class="form-control" placeholder="Ingrese el apellido" asp-for="nuevaPer.Apellido">
+      </div>
+      <span class="text-danger" asp-validation-for="nuevaPer.Apellido"></span>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Email</label>
+      <div class="col-sm-10"><input class="form-control" placeholder="Ingrese el email" asp-for="nuevaPer.Email">
+      </div><span class="text-danger" asp-validation-for="nuevaPer.Email"></span>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Telefono</label>
+      <div class="col-sm-10"><input class="form-control" placeholder="Ingrese el telefono" asp-for="nuevaPer.Telefono">
+      </div><span class="text-danger" asp-validation-for="nuevaPer.Telefono"></span>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Tipo Usuario</label>
+      <div class="col-sm-10">
+        <select asp-for="nuevaPer.tipo" asp-items="Html.GetEnumSelectList<tipoUsuario>()" class="form-control">
+        </select>
+      </div>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
+  </form>
 
 
 
