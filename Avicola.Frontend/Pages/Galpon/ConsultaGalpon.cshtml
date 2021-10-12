@@ -24,10 +24,11 @@
         <th scope="row">@galpon.Id</th>
         <td>@galpon.Nombre</td>
         <td>@galpon.Ubicacion</td>
-        <td><a class="btn btn-secondary" asp-page="./Galpon" asp-route-id="@galpon.Id"><i class="fa fa-edit"></i></a>
-        <a class="btn btn-secondary" asp-page="./DetalleGalpon" asp-route-id="@galpon.Id"><i class="far fa-book"></i></a>
+        <td><a class="btn btn-primary" asp-page="./Galpon" asp-route-id="@galpon.Id">Editar</a>
+        <a class="btn btn-primary" asp-page="./DetalleGalpon" asp-route-id="@galpon.Id">Ver</a>
         </td>
       </tr>
     </tbody>  
   }
 </table>
+<a class="btn btn-secondary" asp-page="./Galpon">Volver</a>

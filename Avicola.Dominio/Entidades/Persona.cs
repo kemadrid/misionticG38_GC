@@ -15,7 +15,8 @@ namespace Avicola.Dominio
         [Required, StringLength(15)]
         public string Cedula {get;set;}
 
-        [Required, StringLength(50)]
+        [Required]
+        [EmailAddress]
         public string Email {get;set;}
         
         [Required, StringLength(50)]

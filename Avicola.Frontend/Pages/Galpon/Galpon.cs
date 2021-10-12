@@ -33,7 +33,6 @@ namespace Avicola.FrontEnd.Pages
              
         }
         
-
         public IActionResult OnPost()
         {
             if (ModelState.IsValid)

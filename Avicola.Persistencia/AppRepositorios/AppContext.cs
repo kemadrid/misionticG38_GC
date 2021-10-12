@@ -14,7 +14,7 @@ namespace Avicola.Persistencia
             if(!optionsBuilder.IsConfigured)
             {
                                  //optionsBuilder.UseSqlServer(@"Initial Catalog=granjaAvicolaDb; Data Source=DESKTOP-QRLUO62\SQLEXPRESS; Integrated Security=true"); 
-               optionsBuilder.UseSqlServer("Data Source = KM-HP\\SQLEXPRESS; Initial Catalog = granjaAvicolaDb;User ID= sa ;Password= adminbd;");
+               optionsBuilder.UseSqlServer(@"Initial Catalog=AvicolaDb; Data Source=DESKTOP-QRLUO62\SQLEXPRESS; Integrated Security=true");
             }
         }
     }
