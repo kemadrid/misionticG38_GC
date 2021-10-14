@@ -50,7 +50,6 @@ namespace Avicola.Persistencia
             return _appContext.Galpones.Where(g => g.Id==idGalpon).FirstOrDefault();
        }
 
-       
        Galpon IRepositorioGalpon.UpdateGalpon(Galpon galpon)
        {
            var galponEncontrado = _appContext.Galpones.FirstOrDefault(g => g.Id==galpon.Id);
