@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Avicola.Dominio;
-
+using System.Data;
 namespace Avicola.Persistencia
 {
     public interface IRepositorioGalpon
@@ -15,6 +15,6 @@ namespace Avicola.Persistencia
 
         Galpon GetGalpon(int idGalpon);
         
-        IEnumerable<Galpon> GetAllGalponesVeterinarios();
+        IEnumerable<Galpon> GetGalponesPorVeterinario(int idVet);
     }
 }

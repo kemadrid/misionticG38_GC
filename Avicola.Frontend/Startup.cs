@@ -28,6 +28,8 @@ namespace Avicola.Frontend
             services.AddSingleton<IRepositorioVariable, RepositorioVariable>();
             services.AddSingleton<IRepositorioPersona, RepositorioPersona>();
             services.AddSingleton<IRepositorioGalpon, RepositorioGalpon>();
+            services.AddSingleton<IRepositorioHistorico, RepositorioHistorico>();
+            services.AddSingleton<IRepositorioHistorico_Variable, RepositorioHistorico_Variable>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

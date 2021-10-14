@@ -36,6 +36,8 @@ namespace Avicola.FrontEnd.Pages
                 galpon = _repoGalpon.GetGalpon(id.Value);
             }else{
                 galpon = new Galpon();
+                galpon.FechaIngAnimales = DateTime.Now;
+                galpon.FechaSalAnimales = DateTime.Now;
             }
             //cargar la lista de veterinarios
             veterinarios = _repoPersona.traerTodosConFiltro(tipoUsuario.VETERINARIO);

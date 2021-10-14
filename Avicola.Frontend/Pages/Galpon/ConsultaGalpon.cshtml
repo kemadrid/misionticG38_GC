@@ -25,7 +25,11 @@
         <th scope="row">@galpon.Id</th>
         <td>@galpon.Nombre</td>
         <td>@galpon.Ubicacion</td>
-        <td>Vete ??</td>
+        @if(@galpon.Veterinario!=null){
+        <td>@galpon.Veterinario.Nombre - @galpon.Veterinario.Apellido</td>
+        }else{
+          <td>SIN ASIGNAR</td>
+        }
         <td><a class="btn btn-primary" asp-page="./Galpon" asp-route-id="@galpon.Id">Editar</a>
         <a class="btn btn-primary" asp-page="./DetalleGalpon" asp-route-id="@galpon.Id">Ver</a>
         </td>

@@ -31,12 +31,7 @@ namespace Avicola.FrontEnd.Pages
          public void OnGet()
         {
             galpones=_repoGalpon.GetAllGalpones();
-            foreach (Galpon g in galpones)
-            {
-                if(g.Veterinario != null){
-                    Console.WriteLine("vete " + g.Veterinario.Nombre);
-                }
-            }
+            
         }
             
     }

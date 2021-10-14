@@ -38,7 +38,7 @@ namespace Avicola.Dominio
         //[RegularExpression("[0-9]",ErrorMessage = "Este campo solo admite numeros")]
         public Persona Veterinario {get;set;}
 
-
+        
         //public Persona Auxiliar{get;set;}
         
     }

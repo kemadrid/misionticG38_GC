@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Avicola.Dominio;
-
+using System;
+using Microsoft.EntityFrameworkCore;
 
 namespace Avicola.Persistencia
 {
@@ -35,20 +36,18 @@ namespace Avicola.Persistencia
 
         IEnumerable<Galpon> IRepositorioGalpon.GetAllGalpones()
        {
-           return _appContext.Galpones;
+           return _appContext.Galpones.Include("Veterinario").ToList();
        }
 
-        IEnumerable<Galpon> IRepositorioGalpon.GetAllGalponesVeterinarios()
-       {
-           IEnumerable<Galpon> result =null;
-           //result = _appContext.Galpones.Include(x => x.Veterinario).ToList();
-           return result;
-
+       IEnumerable<Galpon> IRepositorioGalpon.GetGalponesPorVeterinario(int idVet){
+           var galpones = _appContext.Galpones.Include("Veterinario")
+           .Where(g => g.Veterinario.Id == idVet).ToList();
+           return galpones;
        }
 
        Galpon IRepositorioGalpon.GetGalpon(int idGalpon)
        {
-            return _appContext.Galpones.FirstOrDefault(g => g.Id==idGalpon);
+            return _appContext.Galpones.Where(g => g.Id==idGalpon).FirstOrDefault();
        }
 
        

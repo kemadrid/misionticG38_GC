@@ -1,0 +1,100 @@
+﻿@page
+@model Avicola.Frontend.Pages.HistoricoModel
+@using Avicola.Dominio;
+@{
+}
+
+<div align="center">
+    <H3>Historico para los galpones</H3>
+</div>
+
+<form method="post">
+
+    <div class="container bg-light">
+        <form class="mt-2" method="POST">
+           
+           
+ 
+            
+            
+            <div class="form-group row">
+                <label asp-for="historico.Fecha" class="col-sm-2 col-form-label">Fecha</label>
+                <div class="col-sm-10">
+                    <input class="form-control" asp-for="historico.Fecha" type="datetime-local">
+                </div>
+                <span asp-validation-for="historico.Fecha" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Galpon</label>
+                <div class="col-sm-10">
+                    <select class="form-control" asp-for="idGal_selected">
+                        <option label="Seleccionar" value="-1"></option>
+                        @if (Model.galpones != null)
+                        {
+                            @foreach (var g in Model.galpones)
+                            {
+                                <option label="@g.Nombre" value="@g.Id"></option>
+                            }
+                        }
+                    </select>
+
+                </div>
+                <span asp-validation-for="idGal_selected" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Veterinario</label>
+                <div class="col-sm-10">
+                    <select class="form-control" asp-for="idVet_selected">
+                        <option label="Seleccionar" value="-1"></option>
+                        @if (Model.veterinarios != null)
+                        {
+                            @foreach (var v in Model.veterinarios)
+                            {
+                                <option label="@v.Nombre @v.Apellido" value="@v.Id"></option>
+                            }
+                        }
+                    </select>
+                </div>
+                <span asp-validation-for="idGal_selected" class="text-danger"></span>
+            </div>
+           
+            <div align="center">
+                <H5>Diligenciar Variables</H5>
+            </div>
+
+            @if(Model.historico.Variables != null){
+                <div class="form-group row mt-3">
+                    <table class="table">
+                        <tr>
+                        <th>Tipo de Dato</th>
+                        <th>Nombre de la variable</th>
+                        <th>Valor</th>
+                        </tr>
+                    @foreach (var item in Model.historico.Variables)
+                    {
+                        <tr>
+                            <td>@item.Variable.Tipo</td>
+                            <td>@item.Variable.Nombre</td>
+                            <td>
+                                @if(item.Variable.Tipo == Enum_TipoVariable.TEXTO){
+                                    <input class="form-control" asp-for="@item.valor_string"></input>
+                                }else{
+                                    <input class="form-control" asp-for="@item.valor_float"></input>
+                                }
+                            
+                            </td>
+                        </tr>
+                    }
+                </table>
+                </div>
+            }
+            <div class="form-group row mt-3">
+                <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">Registrar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</form>

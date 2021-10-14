@@ -1,0 +1,48 @@
+﻿@page
+@model Avicola.Frontend.Pages.GalponVeterinarioModel
+@{
+}
+<div align="center">
+    <H3>Veterinarios y los galpones asociados</H3>
+</div>
+
+<form>
+    <div class="form-group mt-4">
+        <label>Seleccione el veterinario para traer sus galpones</label>
+        <select class="form-control" asp-for="@Model.idVet">
+            <option label="Seleccionar" value="-1"></option>  
+            @if(Model.veterinarios!=null){
+                @foreach (var vete in Model.veterinarios)
+                {
+                <option label="@vete.Nombre @vete.Apellido" value="@vete.Id"></option>    
+                }
+            }
+        </select>
+        <button type="submit" class="btn btn-primary mt-3">Buscar</button>
+    </div>
+</form>
+
+@if (Model.galpones != null)
+{
+    <div class="mt-5">
+        <table class="table">
+            <tr>
+
+                <th>Nombre</th>
+                <th>Ubicacion</th>
+                <th>Cantidad de Animales</th>
+                
+            </tr>
+            @foreach (var item in Model.galpones
+           )
+            {
+                <tr>
+                    <td>@item.Nombre</td>
+                    <td>@item.Ubicacion</td>
+                    <td>@item.CantidadAnimales</td>
+                </tr>
+            }
+
+        </table>
+    </div>
+}
