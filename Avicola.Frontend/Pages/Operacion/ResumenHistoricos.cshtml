@@ -1,0 +1,48 @@
+﻿@page
+@model Avicola.Frontend.Pages.ResumenHistoricosModel
+@{
+}
+
+
+<div align="center">
+    <H3>Resumen de Historicos</H3>
+    <a asp-page="Historico" class="btn btn-primary table-btn mt-2">
+        Crear Nuevo
+    </a>
+</div>
+<table class="table mt-2">
+    <tr>
+        
+        <th>Fecha</th>
+        <th>Galpon</th>
+        <th>Veterinario</th>
+        <th>Detalle</th>
+    </tr>
+    @foreach (var item in Model.historicos
+)
+    {
+        <tr>
+            <td>@item.Fecha</td>
+            @if(item.Galpon != null){
+            <td>@item.Galpon.Nombre</td>
+            }else{
+                <td>Sin Asignar</td>
+            }
+            @if(item.Veterinario != null){
+                <td>@item.Veterinario.Nombre @item.Veterinario.Apellido</td>
+            }else{
+                <td>Sin Asignar</td>
+            }
+            
+            <td>
+            <a class="btn btn-primary table-btn" asp-page="DetalleHistorico" asp-route-idhist="@item.Id">
+                <i class="fas fa-info-circle">
+                    Detalle
+                </i>
+            </a>
+            </td>
+            
+        </tr>
+    }
+
+</table>

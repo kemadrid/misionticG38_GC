@@ -11,6 +11,7 @@
   <div class="container bg-light">
 <form method="post">
   <div class="form-group row">
+    <input type="hidden" asp-for="nuevaVar.Id"></input>
     <label  class="col-sm-2 col-form-label">Nombre</label>
     <div class="col-sm-10"><input class="form-control" placeholder="Ingrese el nombre" asp-for="nuevaVar.Nombre">
     </div><span class="text-danger" asp-validation-for="nuevaVar.Nombre"></span>

@@ -35,7 +35,7 @@ namespace Avicola.Persistencia
        }
 
         IEnumerable<Galpon> IRepositorioGalpon.GetAllGalpones()
-       {
+       {    
            return _appContext.Galpones.Include("Veterinario").ToList();
        }
 
@@ -52,7 +52,7 @@ namespace Avicola.Persistencia
 
        Galpon IRepositorioGalpon.UpdateGalpon(Galpon galpon)
        {
-           var galponEncontrado = _appContext.Galpones.FirstOrDefault(g => g.Id==galpon.Id);
+           var galponEncontrado = _appContext.Galpones.Find(galpon.Id);
            if(galponEncontrado!= null)
            {
                galponEncontrado.Nombre = galpon.Nombre;
@@ -62,13 +62,24 @@ namespace Avicola.Persistencia
                galponEncontrado.CantidadAnimales = galpon.CantidadAnimales;
                galponEncontrado.FechaIngAnimales = galpon.FechaIngAnimales;
                galponEncontrado.FechaSalAnimales = galpon.FechaSalAnimales;
-               galponEncontrado.Veterinario = galpon.Veterinario;
-               galponEncontrado.Operario = galpon.Operario;
                //galponEncontrado.Auxiliar = galpon.Auxiliar;
-               
+               galponEncontrado.Veterinario = galpon.Veterinario;
                _appContext.SaveChanges();
            }
            return galponEncontrado;
+       }
+       Galpon IRepositorioGalpon.AsignarVeterinario(Galpon galpon){
+           /* FORMA 2 actualización parcial
+           _appContext.Galpones.Attach(galpon);
+           _appContext.Entry(galpon).Property(x => x.Veterinario).IsModified = true;
+            _appContext.SaveChanges();
+           return galpon;
+           */
+
+           /*forma3, objeto externo actualizado*/
+           _appContext.Entry(galpon).State = EntityState.Modified; 
+           _appContext.SaveChanges();
+           return galpon;
        }
     }
 }

@@ -11,24 +11,42 @@ namespace Avicola.Frontend.Pages
 {
     public class EditVarModel : PageModel
     {
-         [BindProperty]
-        public Variable nuevaVar{get; set;}
-
         private readonly IRepositorioVariable repoVar;
-        public EditVarModel(IRepositorioVariable repoVar){
+
+        [BindProperty]
+        public Variable nuevaVar { get; set; }
+
+
+        public EditVarModel(IRepositorioVariable repoVar)
+        {
             this.repoVar = repoVar;
         }
         public void OnGet()
         {
+            /*
+            if (idvar.HasValue)
+            {
+                nuevaVar = repoVar.buscarPorId(idvar.Value);
+            }
+            else
+            {
+                nuevaVar = new Variable();
+            }
+            return Page();
+            */
             nuevaVar = new Variable();
         }
 
-        public IActionResult OnPost(){
-            if(nuevaVar.Nombre != null){
-               Variable nueva =  repoVar.anadir(nuevaVar);
-                return RedirectToPage("Var");
+        public IActionResult OnPost()
+        {
+            if (nuevaVar.Id > 0)
+            {
+                Variable update = repoVar.modificar(nuevaVar);   
+            }else{
+                Variable nueva = repoVar.anadir(nuevaVar);
+                
             }
-            return Page();
+            return RedirectToPage("Var");
         }
     }
 }

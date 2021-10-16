@@ -1,0 +1,17 @@
+﻿@page
+@model Avicola.Frontend.Pages.pruebasModel
+@{
+}
+
+<form method="post">
+<ul>
+@foreach (var item in Model.lista)
+{
+    <li>@item</li>
+    <input asp-for="@item" class="form-control"></input>
+}
+
+</ul>
+
+<button type="submit" class="btn btn-primary">Enviar</button>
+</form>

@@ -1,6 +1,7 @@
 using Avicola.Dominio;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace Avicola.Persistencia
 {
@@ -39,28 +40,56 @@ namespace Avicola.Persistencia
             
         }
 
-        HistoricoIndicador_Variable IRepositorioHistorico_Variable.modificar(HistoricoIndicador_Variable eq){
+        HistoricoIndicador_Variable IRepositorioHistorico_Variable.modificar(HistoricoIndicador_Variable eq, int histo, int vari){
             HistoricoIndicador_Variable buscado = conexionBD.dbset_historicosxvariables.FirstOrDefault(h => h.Id == eq.Id);
+            IRepositorioHistorico repoHisto = new RepositorioHistorico();
+            HistoricoIndicador objHisto = repoHisto.buscarPorId(histo);
+
+            IRepositorioVariable repoVari = new RepositorioVariable();
+            Variable objVar = repoVari.buscarPorId(vari);
+
             if(buscado != null){
-                buscado.HistoricoIndicador = eq.HistoricoIndicador;
-                buscado.Variable = eq.Variable;
                 buscado.valor_float = eq.valor_float;
                 buscado.valor_string = eq.valor_string;
-                conexionBD.Update(buscado);
+                buscado.HistoricoIndicador = objHisto;
+                buscado.Variable = objVar;
+                //conexionBD.Update(buscado);
                 conexionBD.SaveChanges();
             }
             return buscado;
+        }
+        HistoricoIndicador_Variable IRepositorioHistorico_Variable.modificarObjetos(HistoricoIndicador_Variable eq){
+                conexionBD.Entry(eq).State = EntityState.Modified;
+                conexionBD.SaveChanges();
+            return eq;
+        }
+         HistoricoIndicador_Variable IRepositorioHistorico_Variable.AsignarObjetos(int idHiVa, int idHis, int idVar){
+                IRepositorioHistorico repoH = new RepositorioHistorico();
+                HistoricoIndicador histor = repoH.buscarPorId(idHis);
+                IRepositorioVariable repoV = new RepositorioVariable();
+                Variable vari = repoV.buscarPorId(idVar);
 
-            
+                HistoricoIndicador_Variable hv = new HistoricoIndicador_Variable();
+                hv.Id = idHiVa;
+                hv.HistoricoIndicador = histor;
+                hv.Variable = vari;
+                conexionBD.Entry(hv).State = EntityState.Modified;
+                conexionBD.SaveChanges();
+            return hv;
         }
         
         HistoricoIndicador_Variable IRepositorioHistorico_Variable.buscarPorId(int id){
-            HistoricoIndicador_Variable buscado = conexionBD.dbset_historicosxvariables.FirstOrDefault(h => h.Id == id);
+            var buscado =  conexionBD.dbset_historicosxvariables.Find(id);
             return buscado;
         }
 
-        IEnumerable<HistoricoIndicador_Variable> IRepositorioHistorico_Variable.traerTodosConFiltro(HistoricoIndicador histo){
-            return conexionBD.dbset_historicosxvariables.Where(h => h.HistoricoIndicador.Id == histo.Id).ToList();
+        IEnumerable<HistoricoIndicador_Variable> IRepositorioHistorico_Variable.traerTodosConFiltro(int histo){
+            var todos= conexionBD.dbset_historicosxvariables
+            .Include("Variable")
+            .Include("HistoricoIndicador")
+            .Where(h => h.HistoricoIndicador.Id == histo)
+            .ToList();
+            return todos;
         }
     }
 }

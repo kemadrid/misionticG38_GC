@@ -14,6 +14,8 @@
         <th>Id</th>
         <th>Nombre</th>
         <th>Tipo</th>
+        <th>Editar</th>
+        <th>Borrar</th>
     </tr>
     @foreach (var item in Model.variablesBD
 )
@@ -22,6 +24,20 @@
             <td>@item.Id</td>
             <td>@item.Nombre</td>
             <td>@item.Tipo</td>
+            <td>
+            <a class="btn btn-primary table-btn" asp-page="EditVar" asp-route-idvar="@item.Id">
+                <i class="fas fa-info-circle">
+                    Editar
+                </i>
+            </a>
+            </td>
+            <td>
+            <a class="btn btn-primary table-btn" asp-page="BorrarVariable" asp-route-idvar="@item.Id">
+                <i class="fas fa-info-circle">
+                    Borrar
+                </i>
+            </a>
+            </td>
         </tr>
     }
 

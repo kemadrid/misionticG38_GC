@@ -34,6 +34,9 @@ namespace Avicola.FrontEnd.Pages
             if (id.HasValue)
             {
                 galpon = _repoGalpon.GetGalpon(id.Value);
+                if(galpon != null && galpon.Veterinario!=null){
+                veterinarioSelected = galpon.Veterinario.Id;
+                }
             }else{
                 galpon = new Galpon();
                 galpon.FechaIngAnimales = DateTime.Now;
@@ -50,27 +53,21 @@ namespace Avicola.FrontEnd.Pages
         {
             if (ModelState.IsValid)
             {
-                if (galpon.Id>0)
+                if (galpon.Id==0)
                 {
-                    galpon = _repoGalpon.UpdateGalpon(galpon);
-                }else{
                   galpon = _repoGalpon.AddGalpon(galpon);
-                    
                 }
-
                 //validemos el veterinario seleccionado y asignarlo
                 Persona veterinario = null;
                 if(veterinarioSelected != -1){
                     veterinario = _repoPersona.buscarPorId(veterinarioSelected);
                     if(veterinario!=null){
                         galpon.Veterinario = veterinario;
-                         _repoGalpon.UpdateGalpon(galpon);
+                        _repoGalpon.UpdateGalpon(galpon);
                     }
                 }
-                
                 //asignar veterinario al galpon
-                return RedirectToPage("Galpon");
-                
+                return RedirectToPage("ConsultaGalpon");
             } else
             {
                return Page();

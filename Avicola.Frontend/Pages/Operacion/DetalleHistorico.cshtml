@@ -1,0 +1,63 @@
+﻿@page
+@model Avicola.Frontend.Pages.DetalleHistoricoModel
+@using Avicola.Dominio;
+@{
+}
+
+
+<div align="center">
+    <H3>Terminar registro del historico</H3>
+</div>
+
+
+<div class="container bg-light">
+    <form class="mt-2" method="POST">
+
+        <div class="form-group row">
+            <label asp-for="historicoDetalle.Fecha" class="col-sm-2 col-form-label">Fecha</label>
+            <div class="col-sm-10">
+                <input class="form-control" asp-for="historicoDetalle.Fecha" type="datetime-local" disabled>
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Galpon</label>
+            <div class="col-sm-10">
+                <input class="form-control" asp-for="historicoDetalle.Galpon.Nombre" disabled>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Veterinario</label>
+            <div class="col-sm-10">
+                <input class="form-control" asp-for="nombre_completo" disabled>
+            </div>
+        </div>
+
+        <div align="center">
+            <a class="btn btn-primary" asp-page="VariableHistorico" asp-route-idHist="@Model.historicoDetalle.Id">
+                Añadir Variable al Historico
+            </a>
+             <a class="btn btn-primary" asp-page="ResumenHistoricos">
+                Ir a Historicos
+            </a>    
+        </div>
+
+
+        <table class="table mt-3" title="Variables del historico">
+            <tr>
+                <th>Variable</th>
+                <th>Valor</th>
+            </tr>
+            @foreach (var item in Model.variables_historico)
+            {
+                <tr>
+                    <td>@item.Variable.Nombre</td>
+                    <td>@item.valor_string</td>
+                </tr>
+            }
+
+        </table>
+
+    </form>
+</div>

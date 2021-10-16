@@ -16,5 +16,6 @@ namespace Avicola.Persistencia
         Galpon GetGalpon(int idGalpon);
         
         IEnumerable<Galpon> GetGalponesPorVeterinario(int idVet);
+        Galpon AsignarVeterinario(Galpon galpon);
     }
 }
