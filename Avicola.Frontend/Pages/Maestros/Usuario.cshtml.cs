@@ -11,14 +11,14 @@ namespace Avicola.Frontend.Pages
     public class UsuarioModel : PageModel
     {
         public IEnumerable<Persona> personasBD{get; set;}
-        private readonly IRepositorioPersona repoPer;
+        private readonly IRepositorioGeneral repoPer;
 
-        public UsuarioModel(IRepositorioPersona repoPer){
+        public UsuarioModel(IRepositorioGeneral repoPer){
             this.repoPer = repoPer;
         }
         public void OnGet()
         {
-           personasBD = repoPer.traerTodos(); 
+           personasBD = repoPer.traerTodosPersona(); 
         }
     }
 }

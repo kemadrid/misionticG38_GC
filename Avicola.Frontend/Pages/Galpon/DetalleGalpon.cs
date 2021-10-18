@@ -13,9 +13,9 @@ namespace Avicola.FrontEnd.Pages
 {
     public class DetalleGalponModel : PageModel
     {
-        private readonly IRepositorioGalpon _repoGalpon;
+        private readonly IRepositorioGeneral _repoGalpon;
         public Galpon galpon {get;set;}
-        public DetalleGalponModel(IRepositorioGalpon repoGalpon)
+        public DetalleGalponModel(IRepositorioGeneral repoGalpon)
         {
             _repoGalpon = repoGalpon;
         }

@@ -11,9 +11,8 @@ namespace Avicola.Frontend.Pages
 {
     public class VariableHistoricoModel : PageModel
     {
-        private readonly IRepositorioVariable repoVar;
+        private readonly IRepositorioGeneral repoGeneral;
         
-        private readonly IRepositorioHistorico repoHisto;
         public IEnumerable<Variable> variables_opciones { get; set; }
 
         [BindProperty]
@@ -25,14 +24,12 @@ namespace Avicola.Frontend.Pages
         //id para identificar el historico al que le estan insertando las variables
         [BindProperty]
         public int id_historico { get; set; }
-        public VariableHistoricoModel(IRepositorioVariable repoVar,
-        IRepositorioHistorico repoHisto)
+        public VariableHistoricoModel(IRepositorioGeneral repoGeneral)
         {
-            this.repoVar = repoVar;
-            this.repoHisto = repoHisto;
+            this.repoGeneral = repoGeneral;
 
             Console.WriteLine("ctor ");
-            variables_opciones = repoVar.traerTodos();
+            variables_opciones = repoGeneral.traerTodosVariable();
             objeto = new HistoricoIndicador_Variable();
         }
         public IActionResult OnGet(int idHist)
@@ -49,11 +46,11 @@ namespace Avicola.Frontend.Pages
             {
                 if (ModelState.IsValid)
                 {
-                    HistoricoIndicador historico = repoHisto.buscarPorId(id_historico);
-                    Variable variable_utilizada = repoVar.buscarPorId(idVar_selected);
+                    HistoricoIndicador historico = repoGeneral.buscarPorIdHistorico(id_historico);
+                    Variable variable_utilizada = repoGeneral.buscarPorIdVariable(idVar_selected);
 
                     //guardar el objeto
-                    objeto = repoHisto.anadirVariableHistorico(objeto);
+                    objeto = repoGeneral.anadirVariableHistorico(objeto);
                     //setearle los campos nuevos y actualizarlo
                     
                     if (objeto.Id>0)
@@ -61,9 +58,9 @@ namespace Avicola.Frontend.Pages
                         //repoHistoVar.AsignarObjetos(aux.Id, id_historico, idVar_selected);
                         objeto.HistoricoIndicador = historico;
                         objeto.Variable = variable_utilizada;
-                        objeto = repoHisto.modificarVariableHistorico(objeto);
-                        //return RedirectToPage("DetalleHistorico", new { idhist = id_historico });
-                        return RedirectToPage("ResumenHistoricos");
+                        objeto = repoGeneral.modificarVariableHistorico(objeto);
+                        return RedirectToPage("DetalleHistorico", new { idhist = id_historico });
+                        //return RedirectToPage("ResumenHistoricos");
                     }
                     else { return Page(); }
                 }else { return Page(); }

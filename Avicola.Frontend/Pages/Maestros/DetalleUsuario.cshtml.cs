@@ -12,14 +12,14 @@ namespace Avicola.Frontend.Pages
     public class DetalleUsuarioModel : PageModel
     {
         public Persona detallePer {get; set;}
-        private readonly IRepositorioPersona repoPer;
+        private readonly IRepositorioGeneral repoPer;
 
-        public DetalleUsuarioModel(IRepositorioPersona repoPer){
+        public DetalleUsuarioModel(IRepositorioGeneral repoPer){
             this.repoPer = repoPer;
         }
         public IActionResult OnGet(int idusuario)
         {
-            detallePer = repoPer.buscarPorId(idusuario);
+            detallePer = repoPer.buscarPorIdPersona(idusuario);
             if(detallePer == null){
                 return RedirectToPage("../Error");
             }

@@ -12,10 +12,10 @@ namespace Avicola.FrontEnd.Pages
 {
     public class RegistroGalponModel : PageModel
     {
-        private readonly IRepositorioGalpon _repoGalpon;
+        private readonly IRepositorioGeneral _repoGalpon;
         //[BindProperty]
         public Galpon galpon {get;set;}
-        public RegistroGalponModel(IRepositorioGalpon repoGalpon)
+        public RegistroGalponModel(IRepositorioGeneral repoGalpon)
         {
             _repoGalpon = repoGalpon;
         }

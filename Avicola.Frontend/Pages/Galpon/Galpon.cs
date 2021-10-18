@@ -14,8 +14,7 @@ namespace Avicola.FrontEnd.Pages
     public class GalponModel : PageModel
     {
         
-        private readonly IRepositorioGalpon _repoGalpon;
-        private readonly IRepositorioPersona _repoPersona;
+        private readonly IRepositorioGeneral repoGeneral;
 
         public IEnumerable<Persona> veterinarios{get; set;}
         [BindProperty]
@@ -23,17 +22,16 @@ namespace Avicola.FrontEnd.Pages
         
         [BindProperty]
         public Galpon galpon {get;set;}
-        public GalponModel(IRepositorioGalpon repoGalpon, IRepositorioPersona repoPersona)
+        public GalponModel(IRepositorioGeneral repoGeneral)
         {
-            _repoGalpon = repoGalpon;
-            _repoPersona = repoPersona;
+            this.repoGeneral = repoGeneral;
         }
 
         public IActionResult OnGet(int? id)
         {
             if (id.HasValue)
             {
-                galpon = _repoGalpon.GetGalpon(id.Value);
+                galpon = repoGeneral.GetGalpon(id.Value);
                 if(galpon != null && galpon.Veterinario!=null){
                 veterinarioSelected = galpon.Veterinario.Id;
                 }
@@ -43,7 +41,7 @@ namespace Avicola.FrontEnd.Pages
                 galpon.FechaSalAnimales = DateTime.Now;
             }
             //cargar la lista de veterinarios
-            veterinarios = _repoPersona.traerTodosConFiltro(tipoUsuario.VETERINARIO);
+            veterinarios = repoGeneral.traerTodosConFiltroPersona(tipoUsuario.VETERINARIO);
             
             return Page(); 
              
@@ -55,15 +53,15 @@ namespace Avicola.FrontEnd.Pages
             {
                 if (galpon.Id==0)
                 {
-                  galpon = _repoGalpon.AddGalpon(galpon);
+                  galpon = repoGeneral.AddGalpon(galpon);
                 }
                 //validemos el veterinario seleccionado y asignarlo
                 Persona veterinario = null;
                 if(veterinarioSelected != -1){
-                    veterinario = _repoPersona.buscarPorId(veterinarioSelected);
+                    veterinario = repoGeneral.buscarPorIdPersona(veterinarioSelected);
                     if(veterinario!=null){
                         galpon.Veterinario = veterinario;
-                        _repoGalpon.UpdateGalpon(galpon);
+                        repoGeneral.UpdateGalpon(galpon);
                     }
                 }
                 //asignar veterinario al galpon

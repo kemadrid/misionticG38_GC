@@ -12,23 +12,21 @@ namespace Avicola.Frontend.Pages
     public class GalponVeterinarioModel : PageModel
     {   
 
-        private readonly IRepositorioGalpon repoGalpon;
-        private readonly IRepositorioPersona repoPersona;
+        private readonly IRepositorioGeneral repoGeneral;
         public int idVet{get; set;}
 
         public IEnumerable<Persona> veterinarios{get; set;}
         public IEnumerable<Galpon> galpones{get; set;}
 
-        public GalponVeterinarioModel(IRepositorioGalpon repoG, IRepositorioPersona repoP){
-            this.repoGalpon=repoG;
-            this.repoPersona=repoP;
+        public GalponVeterinarioModel(IRepositorioGeneral repoG){
+            this.repoGeneral = repoG;
         }
         public IActionResult OnGet(int? idVet)
         {   
-            veterinarios = repoPersona.traerTodosConFiltro(tipoUsuario.VETERINARIO);
+            veterinarios = repoGeneral.traerTodosConFiltroPersona(tipoUsuario.VETERINARIO);
             if(idVet.HasValue){
                 //mostrar los datos
-                galpones = repoGalpon.GetGalponesPorVeterinario(idVet.Value);
+                galpones = repoGeneral.GetGalponesPorVeterinario(idVet.Value);
             }
             return Page();
         }

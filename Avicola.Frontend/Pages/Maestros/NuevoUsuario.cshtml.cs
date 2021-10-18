@@ -15,15 +15,15 @@ namespace Avicola.Frontend.Pages
         public Persona nuevaPer{get; set;}
 
         
-        private readonly IRepositorioPersona repoPer;
-        public NuevoUsuarioModel(IRepositorioPersona repoPer){
+        private readonly IRepositorioGeneral repoPer;
+        public NuevoUsuarioModel(IRepositorioGeneral repoPer){
             this.repoPer = repoPer;
         }
         public IActionResult OnGet(int? idusuario)
         {
             if(idusuario.HasValue){
                 //editar
-                nuevaPer = repoPer.buscarPorId(idusuario.Value);
+                nuevaPer = repoPer.buscarPorIdPersona(idusuario.Value);
                 Console.WriteLine("id parametro " + idusuario.Value);
                 
             }else{
@@ -41,10 +41,10 @@ namespace Avicola.Frontend.Pages
             }
             if(nuevaPer.Id>0){
                 //editando
-              nuevaPer =  repoPer.modificar(nuevaPer);
+              nuevaPer =  repoPer.modificarPersona(nuevaPer);
             }
             else{
-            repoPer.anadir(nuevaPer);
+            repoPer.anadirPersona(nuevaPer);
             }
             return RedirectToPage("Usuario");
         }

@@ -13,21 +13,21 @@ namespace Avicola.Frontend.Pages
     {
         [BindProperty]
         public Persona detallePer{get; set;}
-        private readonly IRepositorioPersona repoPer;
+        private readonly IRepositorioGeneral repoPer;
 
-        public BorrarUsuarioModel(IRepositorioPersona repoPer){
+        public BorrarUsuarioModel(IRepositorioGeneral repoPer){
             this.repoPer = repoPer;
         }
 
         public IActionResult OnGet(int idusuario)
         {
-            detallePer = repoPer.buscarPorId(idusuario);
+            detallePer = repoPer.buscarPorIdPersona(idusuario);
             return Page();
         }
 
         public IActionResult OnPost(){
             Console.WriteLine("id a borrar " + detallePer.Id);
-            repoPer.eliminar(detallePer.Id);
+            repoPer.eliminarPersona(detallePer.Id);
             return RedirectToPage("Usuario");   
         }
     }

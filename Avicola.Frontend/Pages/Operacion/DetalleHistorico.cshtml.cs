@@ -11,20 +11,19 @@ namespace Avicola.Frontend.Pages
 {
     public class DetalleHistoricoModel : PageModel
     {   
-        private readonly IRepositorioHistorico repoHisto;
-        private readonly IRepositorioHistorico_Variable repoHistoVar;
+        private readonly IRepositorioGeneral repoGeneral;
         public HistoricoIndicador historicoDetalle{get; set;}
         public string nombre_completo{get; set;}
         public IEnumerable<HistoricoIndicador_Variable> variables_historico{get; set;}
-        public DetalleHistoricoModel(IRepositorioHistorico repoHisto, IRepositorioHistorico_Variable repoHistoVar){
-            this.repoHisto = repoHisto;
-            this.repoHistoVar = repoHistoVar;
+        public DetalleHistoricoModel(IRepositorioGeneral repoGeneral){
+            this.repoGeneral = repoGeneral;
+            
         }
         public IActionResult OnGet(int idhist){
             
-             historicoDetalle = repoHisto.buscarPorId(idhist);
+             historicoDetalle = repoGeneral.buscarPorIdHistorico(idhist);
              nombre_completo = historicoDetalle.Veterinario.Nombre + " "+ historicoDetalle.Veterinario.Apellido;
-             variables_historico = repoHistoVar.traerTodosConFiltro(idhist);
+             variables_historico = repoGeneral.traerTodosConFiltroHistoVar(idhist);
              
              return Page();   
         }

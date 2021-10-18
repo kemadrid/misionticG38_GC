@@ -11,14 +11,14 @@ namespace Avicola.Frontend.Pages
     public class VarModel : PageModel
     {
         public IEnumerable<Variable> variablesBD{get; set;}
-        private readonly IRepositorioVariable repoVar;
+        private readonly IRepositorioGeneral repoVar;
 
-        public VarModel(IRepositorioVariable repoVar){
+        public VarModel(IRepositorioGeneral repoVar){
             this.repoVar = repoVar;
         }
         public void OnGet()
         {
-            variablesBD = repoVar.traerTodos();
+            variablesBD = repoVar.traerTodosVariable();
         }
     }
 }

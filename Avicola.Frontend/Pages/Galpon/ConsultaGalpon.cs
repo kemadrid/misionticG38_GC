@@ -13,9 +13,9 @@ namespace Avicola.FrontEnd.Pages
 {
     public class ConsultaGalponModel : PageModel
     {
-        private readonly IRepositorioGalpon _repoGalpon;
+        private readonly IRepositorioGeneral _repoGalpon;
         public IEnumerable<Galpon> galpones {get;set;}
-        public ConsultaGalponModel(IRepositorioGalpon repoGalpon)
+        public ConsultaGalponModel(IRepositorioGeneral repoGalpon)
         {
             _repoGalpon = repoGalpon;
         }
@@ -29,7 +29,7 @@ namespace Avicola.FrontEnd.Pages
             } 
         }*/
          public void OnGet()
-        {
+        {   
             galpones=_repoGalpon.GetAllGalpones();
             
         }

@@ -13,10 +13,7 @@ namespace Avicola.Frontend.Pages
     public class HistoricoModel : PageModel
     {   
         //repositorios
-        private readonly IRepositorioPersona repoPer;
-        private readonly IRepositorioGalpon repoGal;
-        private readonly IRepositorioVariable repoVar;
-        private readonly IRepositorioHistorico repoHisto;
+        private readonly IRepositorioGeneral repoGeneral;
 
         
         //listas para seleccion de datos
@@ -36,14 +33,11 @@ namespace Avicola.Frontend.Pages
         [BindProperty]
         public int idGal_selected{get; set;}
 
-        public HistoricoModel(IRepositorioGalpon repoG, IRepositorioPersona repoP, IRepositorioVariable repoV, IRepositorioHistorico repoH){
-            this.repoPer = repoP;
-            this.repoGal = repoG;
-            this.repoVar = repoV;
-            this.repoHisto = repoH;
+        public HistoricoModel(IRepositorioGeneral repoGeneral){
+            this.repoGeneral = repoGeneral;
 
-            galpones = repoGal.GetAllGalpones();
-            veterinarios = repoPer.traerTodosConFiltro(tipoUsuario.VETERINARIO);
+            galpones = repoGeneral.GetAllGalpones();
+            veterinarios = repoGeneral.traerTodosConFiltroPersona(tipoUsuario.VETERINARIO);
         }
         public void OnGet()
         {
@@ -59,15 +53,15 @@ namespace Avicola.Frontend.Pages
             Persona vet = null;
             Galpon gal = null;
             if(idVet_selected != -1){
-                vet = repoPer.buscarPorId(idVet_selected);
+                vet = repoGeneral.buscarPorIdPersona(idVet_selected);
             }
             //Seleccionaron Galpon
             if(idGal_selected != -1){
-                gal = repoGal.GetGalpon(idGal_selected);
+                gal = repoGeneral.GetGalpon(idGal_selected);
             }else{
                 return Page();
             }
-            historico = repoHisto.anadir(historico);
+            historico = repoGeneral.anadirHistorico(historico);
             
             //setear el galpon y veterinario y luego actualizar
             if(historico.Id>0){
@@ -77,7 +71,7 @@ namespace Avicola.Frontend.Pages
                 if(vet != null){
                     historico.Veterinario = vet;
                 }
-                repoHisto.modificar(historico);
+                repoGeneral.modificarHistorico(historico);
             }
             //actualizar el historico
             

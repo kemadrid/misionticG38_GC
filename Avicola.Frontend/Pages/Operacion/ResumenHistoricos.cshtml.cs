@@ -11,14 +11,14 @@ namespace Avicola.Frontend.Pages
 {
     public class ResumenHistoricosModel : PageModel
     {
-        private readonly IRepositorioHistorico repoHisto;
-        public IEnumerable<HistoricoIndicador> historicos;
-        public ResumenHistoricosModel(IRepositorioHistorico repoHisto){
-            this.repoHisto = repoHisto;
+        private readonly IRepositorioGeneral repoGeneral;
+        public IEnumerable<HistoricoIndicador> historicos {get; set;}
+        public ResumenHistoricosModel(IRepositorioGeneral repoGeneral){
+            this.repoGeneral = repoGeneral;
         }
         public void OnGet()
         {
-            historicos = repoHisto.traerTodos();
+            historicos = repoGeneral.traerTodosHistorico();
         }
     }
 }
